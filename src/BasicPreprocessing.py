@@ -1,6 +1,13 @@
-class Preprocessing:
-    def __init__(self):
-        pass
+class BasicPreprocessing:
+    def __init__(self,dataset_path):
+        self.dataset_path = dataset_path
+        self.image_size = 128
+        self.batch_size = 32
+        self.train_ratio = None
+        self.val_ratio = None
+        self.test_ratio = None
+        self.random_seed = 42
+        
 
     def import_dataset(self):  #to load dataset and to store class names
         pass
