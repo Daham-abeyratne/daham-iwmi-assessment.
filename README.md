@@ -272,6 +272,4 @@ Confusion matrix:
 
 ## 👨‍💻 Author
 
-Developed as part of a Deep Learning / Computer Vision internship assessment project.
-
-**Technologies**: PyTorch, OpenCV, Streamlit
+Developed as part of a Deep Learning / Computer Vision internship assessment project
