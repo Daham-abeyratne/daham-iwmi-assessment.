@@ -207,12 +207,7 @@ The application will launch in your browser.
 
 * Detect faces using Haar Cascades
 * Classify each detected face individually
-* Display annotated image with predictions (green = with_mask, red = without_mask)
-
-#### Sidebar
-
-* Architecture summary
-* Best validation accuracy (read from the saved checkpoint)
+* Display annotated image with predictions
 
 ---
 
