@@ -163,23 +163,4 @@ class FaceMaskTrainer:
         return test_acc
 
 
-pre = BasicPreprocessing("E:\\IWMI_Assesment\\data")
-pre.import_dataset()
-pre.create_transforms()
-pre.split_dataset()
-pre.create_dataloaders()
-
-trainer = FaceMaskTrainer()
-
-val_loss, val_acc = trainer.validate(pre.val_loader)
-print(f"Pre-training val loss: {val_loss:.4f}  val acc: {val_acc:.4f}")
-
-trainer.epochs = 2
-trainer.fit(pre.train_loader, pre.val_loader, class_names=pre.class_names)
-
-trainer.plot_training_history()   
-trainer.evaluate(pre.test_loader, class_names=pre.class_names)  
-
-print("\nAll checks passed.")
-
 
