@@ -2,3 +2,5 @@ opencv-python
 matplotlib
 scikit-learn
 streamlit
+cv2
+PIL

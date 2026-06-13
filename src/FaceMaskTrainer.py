@@ -18,7 +18,6 @@ class FaceMaskTrainer:
         self.criterion = nn.CrossEntropyLoss()
         self.optimizer = optim.Adam(self.model.parameters(), lr=0.001)
 
-        # Halves LR if val_loss doesn't improve for 2 epochs
         self.scheduler = optim.lr_scheduler.ReduceLROnPlateau(
             self.optimizer, mode="min", factor=0.5, patience=2
         )
