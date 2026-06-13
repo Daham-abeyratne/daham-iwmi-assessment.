@@ -1,4 +1,4 @@
-from FaceMaskCNN import FaceMaskCNN
+from src.FaceMaskCNN import FaceMaskCNN
 import torch
 import cv2
 import torchvision.transforms as transforms
@@ -106,27 +106,3 @@ class BasicInference:
 
     def predict(self, pil_image):  
             return self._classify_crop(pil_image)
-
-
-
-inf = BasicInference("E:\\IWMI_Assesment\\models\\best_model.pth")
-
-test_img_path = "E:\\IWMI_Assesment\\data\\without_mask\\without_mask_35.jpg"
-pil_img = Image.open(test_img_path).convert("RGB")
-label, confidence, all_probs = inf.predict(pil_img)
-
-print(f"\npredict() result:")
-print(f"  Label:      {label}")
-print(f"  Confidence: {confidence:.1f}%")
-print(f"  All probs:  {all_probs}")
-
-results, annotated = inf.detect_images(
-    image_path=test_img_path,
-    output_path="../results/test_inference_output.jpg"
-)
-
-print(f"\ndetect_images() result:")
-for r in results:
-    print(f"  Face {r['face_index']+1}: {r['label']} ({r['confidence']:.1f}%)  bbox={r['bbox']}")
-
-print("\nAll checks passed.")
