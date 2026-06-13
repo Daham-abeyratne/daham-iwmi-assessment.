@@ -134,13 +134,3 @@ class BasicPreprocessing:
 
         plt.tight_layout()
         plt.show()
-
-
-if __name__ == "__main__":
-    preprocessor = BasicPreprocessing(r"E:\IWMI_Assesment\data")
-    preprocessor.import_dataset()
-    preprocessor.inspect_dataset()
-    preprocessor.create_transforms()
-    preprocessor.split_dataset()
-    preprocessor.create_dataloaders()
-    preprocessor.visualize()
