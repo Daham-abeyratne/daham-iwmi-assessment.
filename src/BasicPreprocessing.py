@@ -114,6 +114,7 @@ class BasicPreprocessing:
         print(f"Train batches: {len(self.train_loader)}")
         print(f"Validation batches: {len(self.val_loader)}")
         print(f"Test batches: {len(self.test_loader)}")
+        return self.train_loader, self.val_loader, self.test_loader
 
     def visualize(self, num_images=6):
         images, labels = next(iter(self.train_loader))

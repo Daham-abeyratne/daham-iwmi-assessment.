@@ -9,9 +9,10 @@ class BasicInference:
     def __init__(self,model_path):
         self.model_path = model_path
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        self.model = FaceMaskCNN().to(self.device)
         checkpoint = torch.load(model_path,map_location=self.device)
-
+        self.model = FaceMaskCNN().to(self.device)
+        self.model.load_state_dict(checkpoint["model_state_dict"])
+        self.model.eval()
         self.class_names = checkpoint.get("class_names",["with_mask", "without_mask"])
         self.val_acc = checkpoint.get("val_acc",None)
 
@@ -19,7 +20,7 @@ class BasicInference:
         cascade_path = cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
         self.face_cascade = cv2.CascadeClassifier(cascade_path)
 
-        self.transform = transforms.Compose([transforms.Resize((128,128)),transforms.ToTensor(),transforms.Normalize(mean=[0.485,0.456,0.406],std=[0.299,0.224,0.225]),])
+        self.transform = transforms.Compose([transforms.Resize((128,128)),transforms.ToTensor(),transforms.Normalize(mean=[0.485,0.456,0.406],std=[0.229,0.224,0.225]),])
 
         print(f"Inference ready  |  device: {self.device}  |  classes: {self.class_names}")
 
@@ -110,7 +111,7 @@ class BasicInference:
 
 inf = BasicInference("E:\\IWMI_Assesment\\models\\best_model.pth")
 
-test_img_path = "E:\\IWMI_Assesment\\data\\with_mask\\with_mask_24.jpg"
+test_img_path = "E:\\IWMI_Assesment\\data\\without_mask\\without_mask_35.jpg"
 pil_img = Image.open(test_img_path).convert("RGB")
 label, confidence, all_probs = inf.predict(pil_img)
 

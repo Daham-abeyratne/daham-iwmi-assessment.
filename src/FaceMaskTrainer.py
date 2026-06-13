@@ -164,3 +164,30 @@ class FaceMaskTrainer:
 
 
 
+if __name__ == "__main__":
+
+    dataset_path = "E:\\IWMI_Assesment\\data"  
+
+    preprocessor = BasicPreprocessing(dataset_path)
+
+    preprocessor.import_dataset()
+    preprocessor.inspect_dataset()
+    preprocessor.create_transforms()
+    preprocessor.split_dataset()
+
+    train_loader, val_loader, test_loader = preprocessor.create_dataloaders()
+
+    trainer = FaceMaskTrainer()
+
+    trainer.fit(
+        train_loader,
+        val_loader,
+        class_names=preprocessor.class_names
+    )
+
+    trainer.plot_training_history()
+
+    trainer.evaluate(
+        test_loader,
+        class_names=preprocessor.class_names
+    )
